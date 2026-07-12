@@ -8,23 +8,33 @@ describe("hsl calculator", () => {
     });
 
     it("white → rgb(255, 255, 255)", () => {
-      expect(compute("hsl(0, 0%, 100%)").find((r) => r.label === "RGB")?.value).toBe("rgb(255, 255, 255)");
+      expect(compute("hsl(0, 0%, 100%)").find((r) => r.label === "RGB")?.value).toBe(
+        "rgb(255, 255, 255)"
+      );
     });
 
     it("pure red → rgb(255, 0, 0)", () => {
-      expect(compute("hsl(0, 100%, 50%)").find((r) => r.label === "RGB")?.value).toBe("rgb(255, 0, 0)");
+      expect(compute("hsl(0, 100%, 50%)").find((r) => r.label === "RGB")?.value).toBe(
+        "rgb(255, 0, 0)"
+      );
     });
 
     it("pure green → rgb(0, 255, 0)", () => {
-      expect(compute("hsl(120, 100%, 50%)").find((r) => r.label === "RGB")?.value).toBe("rgb(0, 255, 0)");
+      expect(compute("hsl(120, 100%, 50%)").find((r) => r.label === "RGB")?.value).toBe(
+        "rgb(0, 255, 0)"
+      );
     });
 
     it("pure blue → rgb(0, 0, 255)", () => {
-      expect(compute("hsl(240, 100%, 50%)").find((r) => r.label === "RGB")?.value).toBe("rgb(0, 0, 255)");
+      expect(compute("hsl(240, 100%, 50%)").find((r) => r.label === "RGB")?.value).toBe(
+        "rgb(0, 0, 255)"
+      );
     });
 
     it("hsla includes alpha in rgba()", () => {
-      expect(compute("hsla(0, 100%, 50%, 0.5)").find((r) => r.label === "RGB")?.value).toBe("rgba(255, 0, 0, 0.5)");
+      expect(compute("hsla(0, 100%, 50%, 0.5)").find((r) => r.label === "RGB")?.value).toBe(
+        "rgba(255, 0, 0, 0.5)"
+      );
     });
   });
 
@@ -50,7 +60,9 @@ describe("hsl calculator", () => {
     });
 
     it("hsla → 8-digit hex", () => {
-      expect(compute("hsla(0, 100%, 50%, 0.5)").find((r) => r.label === "HEX")?.value).toBe("#FF000080");
+      expect(compute("hsla(0, 100%, 50%, 0.5)").find((r) => r.label === "HEX")?.value).toBe(
+        "#FF000080"
+      );
     });
   });
 

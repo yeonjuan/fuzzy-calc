@@ -2,7 +2,11 @@ import type { ResultItem } from "../../core/types";
 
 function hexToRgba(hex: string): [number, number, number, number | null] {
   let h = hex.replace("#", "");
-  if (h.length === 3) h = h.split("").map((c) => c + c).join("");
+  if (h.length === 3)
+    h = h
+      .split("")
+      .map((c) => c + c)
+      .join("");
   const n = parseInt(h.slice(0, 6), 16);
   const r = (n >> 16) & 255;
   const g = (n >> 8) & 255;
@@ -12,8 +16,11 @@ function hexToRgba(hex: string): [number, number, number, number | null] {
 }
 
 function rgbToHsl(r: number, g: number, b: number): [number, number, number] {
-  const rn = r / 255, gn = g / 255, bn = b / 255;
-  const max = Math.max(rn, gn, bn), min = Math.min(rn, gn, bn);
+  const rn = r / 255,
+    gn = g / 255,
+    bn = b / 255;
+  const max = Math.max(rn, gn, bn),
+    min = Math.min(rn, gn, bn);
   const l = (max + min) / 2;
   if (max === min) return [0, 0, Math.round(l * 100)];
   const d = max - min;

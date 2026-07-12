@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Formatting
+
+Prettier runs automatically via PostToolUse hook on every Edit/Write. Config in `.prettierrc`. Manual run: `npm run format`.
+
 ## Styling
 
 Tailwind CSS v4 via `@tailwindcss/vite` plugin. Base styles in `src/index.css` (`@import "tailwindcss"`). No config file — use utility classes directly. oxlint warns on deprecated class names (e.g. `flex-shrink-0` → `shrink-0`).

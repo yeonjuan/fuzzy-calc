@@ -1,7 +1,8 @@
 import type { ResultItem } from "../../core/types";
 
 function hslToRgb(h: number, s: number, l: number): [number, number, number] {
-  const sn = s / 100, ln = l / 100;
+  const sn = s / 100,
+    ln = l / 100;
   const k = (n: number) => (n + h / 30) % 12;
   const a = sn * Math.min(ln, 1 - ln);
   const f = (n: number) => ln - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
@@ -11,7 +12,9 @@ function hslToRgb(h: number, s: number, l: number): [number, number, number] {
 function toHex(r: number, g: number, b: number, a?: number): string {
   const hex = [r, g, b].map((v) => v.toString(16).padStart(2, "0")).join("");
   if (a !== undefined) {
-    const ah = Math.round(a * 255).toString(16).padStart(2, "0");
+    const ah = Math.round(a * 255)
+      .toString(16)
+      .padStart(2, "0");
     return `#${hex}${ah}`.toUpperCase();
   }
   return `#${hex}`.toUpperCase();

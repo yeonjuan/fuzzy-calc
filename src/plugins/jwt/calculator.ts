@@ -1,7 +1,10 @@
 import type { ResultItem } from "../../core/types";
 
 function base64UrlDecode(str: string): string {
-  const padded = str.replace(/-/g, "+").replace(/_/g, "/").padEnd(str.length + ((4 - (str.length % 4)) % 4), "=");
+  const padded = str
+    .replace(/-/g, "+")
+    .replace(/_/g, "/")
+    .padEnd(str.length + ((4 - (str.length % 4)) % 4), "=");
   return decodeURIComponent(
     atob(padded)
       .split("")

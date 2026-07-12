@@ -11,9 +11,16 @@ export interface PluginResult {
   items: ResultItem[];
 }
 
+export interface PluginMeta {
+  description: string;
+  examples: string[];
+  output: string;
+}
+
 export interface Plugin {
   id: string;
   name: string;
+  meta: PluginMeta;
   detect: (input: string) => boolean;
   calculate: (input: string) => Promise<ResultItem[]>;
 }

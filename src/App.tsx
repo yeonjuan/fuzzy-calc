@@ -28,8 +28,12 @@ export default function App() {
     <div className="min-h-screen max-w-3xl mx-auto px-5 py-10 flex flex-col gap-6">
       <header className="mb-2 flex items-start justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">fuzzy-calc</h1>
-          <p className="text-sm text-zinc-400 mt-1 dark:text-zinc-500">paste anything. get everything.</p>
+          <h1 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
+            fuzzy-calc
+          </h1>
+          <p className="text-sm text-zinc-400 mt-1 dark:text-zinc-500">
+            paste anything. get everything.
+          </p>
         </div>
         <button
           onClick={toggle}

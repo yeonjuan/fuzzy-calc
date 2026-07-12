@@ -6,6 +6,10 @@ export function registerPlugin(plugin: Plugin) {
   plugins.push(plugin);
 }
 
+export function getPlugins(): readonly Plugin[] {
+  return plugins;
+}
+
 export async function calculate(input: string): Promise<PluginResult[]> {
   const trimmed = input.trim();
   if (!trimmed) return [];

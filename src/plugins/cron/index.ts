@@ -16,6 +16,11 @@ function isCron(input: string): boolean {
 const cronPlugin: Plugin = {
   id: "cron",
   name: "Cron",
+  meta: {
+    description: "Show next 10 cron execution times",
+    examples: ["* * * * *", "0 9 * * 1-5"],
+    output: "Next 10 scheduled run times",
+  },
   detect: isCron,
   calculate: async (input) => {
     try {

@@ -45,7 +45,11 @@ export function ResultCard({ item }: Props) {
         title="Copy"
         className="absolute top-3 right-3 p-1 rounded text-zinc-400 hover:text-zinc-700 opacity-0 group-hover:opacity-100 transition-all cursor-pointer dark:text-zinc-600 dark:hover:text-zinc-300"
       >
-        <Icon size={14} strokeWidth={copied ? 2.5 : 1.8} className={copied ? "text-green-500 dark:text-green-400" : ""} />
+        <Icon
+          size={14}
+          strokeWidth={copied ? 2.5 : 1.8}
+          className={copied ? "text-green-500 dark:text-green-400" : ""}
+        />
       </button>
     </div>
   );

@@ -4,7 +4,10 @@ function tokenize(input: string): (number | string)[] {
   const tokens: (number | string)[] = [];
   let i = 0;
   while (i < input.length) {
-    if (/\s/.test(input[i])) { i++; continue; }
+    if (/\s/.test(input[i])) {
+      i++;
+      continue;
+    }
     if (/[\d.]/.test(input[i])) {
       let num = "";
       while (i < input.length && /[\d.]/.test(input[i])) num += input[i++];
@@ -21,8 +24,12 @@ function tokenize(input: string): (number | string)[] {
 function parse(tokens: (number | string)[]): number {
   let pos = 0;
 
-  function peek() { return tokens[pos]; }
-  function consume() { return tokens[pos++]; }
+  function peek() {
+    return tokens[pos];
+  }
+  function consume() {
+    return tokens[pos++];
+  }
 
   function parseExpr(): number {
     let left = parseTerm();
@@ -45,8 +52,14 @@ function parse(tokens: (number | string)[]): number {
   }
 
   function parseFactor(): number {
-    if (peek() === "-") { consume(); return -parseFactor(); }
-    if (peek() === "+") { consume(); return parseFactor(); }
+    if (peek() === "-") {
+      consume();
+      return -parseFactor();
+    }
+    if (peek() === "+") {
+      consume();
+      return parseFactor();
+    }
     if (peek() === "(") {
       consume();
       const val = parseExpr();
@@ -69,11 +82,10 @@ export function compute(input: string): ResultItem[] {
   const result = parse(tokens);
 
   const isInt = Number.isFinite(result) && Math.abs(result) < 1e15;
-  const formatted = isInt && Number.isInteger(result)
-    ? result.toString()
-    : parseFloat(result.toPrecision(10)).toString();
+  const formatted =
+    isInt && Number.isInteger(result)
+      ? result.toString()
+      : parseFloat(result.toPrecision(10)).toString();
 
-  return [
-    { label: "Result", value: formatted, type: "text" },
-  ];
+  return [{ label: "Result", value: formatted, type: "text" }];
 }

@@ -11,12 +11,12 @@ const plugins = getPlugins();
 const rows = plugins
   .map((p) => {
     const examples = p.meta.examples.map((e) => `\`${e}\``).join(", ");
-    return `| ${p.name} | ${p.meta.description} | ${examples} | ${p.meta.output} |`;
+    return `| ${p.meta.description} | ${examples} | ${p.meta.output} |`;
   })
   .join("\n");
 
-const table = `| Plugin | Description | Example Input | Output |
-|--------|-------------|---------------|--------|
+const table = `| What you type | Example | What you get |
+|---------------|---------|--------------|
 ${rows}`;
 
 const marker = {
@@ -33,4 +33,4 @@ const replaced = readme.replace(
 );
 
 writeFileSync(readmePath, replaced);
-console.log(`Updated README.md with ${plugins.length} plugins.`);
+console.log(`Updated README.md with ${plugins.length} features.`);

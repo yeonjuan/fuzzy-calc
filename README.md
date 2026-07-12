@@ -8,22 +8,22 @@ Type a hex color, a JWT, a cron expression, a Unix timestamp — fuzzy-calc figu
 
 ---
 
-## Plugins
+## Supported features
 
 <!-- PLUGINS:START -->
-| Plugin | Description | Example Input | Output |
-|--------|-------------|---------------|--------|
-| HEX Color | HEX color to RGB and HSL | `#ff6b6b`, `#3a86ffcc` | RGB, HSL (with alpha if 8-digit) |
-| RGB Color | RGB / RGBA color to HEX and HSL | `rgb(255, 107, 107)`, `rgba(255, 0, 0, 0.5)` | HEX, HSL (with alpha if rgba) |
-| HSL Color | HSL / HSLA color to RGB and HEX | `hsl(0, 100%, 50%)`, `hsla(240, 100%, 50%, 0.5)` | RGB, HEX (with alpha if hsla) |
-| JWT | Decode JWT token | `eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIn0.abc` | Header, Payload (JSON), Expiration |
-| JSON | Format and pretty-print JSON | `{"name":"fuzzy","version":1}`, `[1,2,3]` | Formatted JSON |
-| Arithmetic | Evaluate arithmetic expressions | `2 + 3 * 4`, `(10 - 2) / 4` | Numeric result |
-| Cron | Show next 10 cron execution times | `* * * * *`, `0 9 * * 1-5` | Next 10 scheduled run times |
-| Unix Timestamp | Convert Unix timestamp to UTC and local time | `1720000000`, `1720000000000` | UTC (ISO 8601), Local timezone |
+| What you type | Example | What you get |
+|---------------|---------|--------------|
+| HEX color to RGB and HSL | `#ff6b6b`, `#3a86ffcc` | RGB, HSL (with alpha if 8-digit) |
+| RGB / RGBA color to HEX and HSL | `rgb(255, 107, 107)`, `rgba(255, 0, 0, 0.5)` | HEX, HSL (with alpha if rgba) |
+| HSL / HSLA color to RGB and HEX | `hsl(0, 100%, 50%)`, `hsla(240, 100%, 50%, 0.5)` | RGB, HEX (with alpha if hsla) |
+| Decode JWT token | `eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIn0.abc` | Header, Payload (JSON), Expiration |
+| Format and pretty-print JSON | `{"name":"fuzzy","version":1}`, `[1,2,3]` | Formatted JSON |
+| Evaluate arithmetic expressions | `2 + 3 * 4`, `(10 - 2) / 4` | Numeric result |
+| Show next 10 cron execution times | `* * * * *`, `0 9 * * 1-5` | Next 10 scheduled run times |
+| Convert Unix timestamp to UTC and local time | `1720000000`, `1720000000000` | UTC (ISO 8601), Local timezone |
 <!-- PLUGINS:END -->
 
-> New plugins are added to `src/plugins/`. Run `npm run sync-readme` to update this table.
+> Run `npm run sync-readme` to keep this table in sync with the codebase.
 
 ---
 

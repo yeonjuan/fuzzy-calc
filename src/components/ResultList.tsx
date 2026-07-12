@@ -22,7 +22,7 @@ export function ResultList({ results, loading }: Props) {
           <h2 className="text-xs uppercase tracking-widest text-zinc-500 mb-3">
             {r.pluginName}
           </h2>
-          <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-3">
+          <div className={`grid gap-3 ${r.items.length === 1 ? "grid-cols-1" : r.items.length === 2 ? "grid-cols-2" : "grid-cols-[repeat(auto-fill,minmax(200px,1fr))]"}`}>
             {r.items.map((item) => (
               <ResultCard key={item.label} item={item} />
             ))}

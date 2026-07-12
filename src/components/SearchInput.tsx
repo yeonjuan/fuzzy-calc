@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 interface Props {
   value: string;
@@ -6,19 +6,26 @@ interface Props {
 }
 
 export function SearchInput({ value, onChange }: Props) {
-  const ref = useRef<HTMLInputElement>(null);
+  const ref = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight}px`;
+  }, [value]);
 
   return (
-    <input
+    <textarea
       ref={ref}
-      type="text"
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      placeholder="HEX color, JWT, ..."
+      placeholder="HEX color, RGB, HSL, JWT, JSON, ..."
       autoFocus
       spellCheck={false}
       autoComplete="off"
-      className="w-full px-4 py-3 text-lg rounded-xl border border-zinc-700 bg-zinc-900 text-zinc-100 placeholder-zinc-600 outline-none focus:border-zinc-500 transition-colors"
+      rows={1}
+      className="w-full px-4 py-3 text-sm rounded-xl border border-zinc-700 bg-zinc-900 text-zinc-100 placeholder-zinc-600 outline-none focus:border-zinc-500 transition-colors resize-none overflow-y-auto max-h-64 font-mono"
     />
   );
 }

@@ -6,6 +6,7 @@ import hslPlugin from "./hsl";
 import jsonPlugin from "./json";
 import arithmeticPlugin from "./arithmetic";
 import cronPlugin from "./cron";
+import unixTimePlugin from "./unix-time";
 
 registerPlugin(hexColorPlugin);
 registerPlugin(rgbPlugin);
@@ -14,3 +15,4 @@ registerPlugin(jwtPlugin);
 registerPlugin(jsonPlugin);
 registerPlugin(arithmeticPlugin);
 registerPlugin(cronPlugin);
+registerPlugin(unixTimePlugin);

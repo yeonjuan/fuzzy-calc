@@ -1,33 +1,36 @@
-# React + TypeScript + Vite
+# fuzzy-calc
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> paste anything. get everything.
 
-Currently, two official plugins are available:
+Single search box that detects what you typed and shows every useful transformation — instantly.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What it does
 
-## React Compiler
+| Input | Output |
+|---|---|
+| `#ff6b6b` | RGB, HSL (with alpha if `#RRGGBBAA`) |
+| JWT token | Decoded header, payload, expiration |
+| more coming | plugin-based, easy to extend |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Stack
 
-## Expanding the Oxlint configuration
+- React 19 + TypeScript
+- Vite 8 + `@tailwindcss/vite`
+- lucide-react
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Dev
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
+npm run build
+npm run lint
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
-# fuzzy-calc
+## Adding a plugin
+
+1. `src/plugins/{name}/calculator.ts` — export `compute(input: string): ResultItem[]`
+2. `src/plugins/{name}/index.ts` — export default `Plugin` with sync `detect` and dynamic import of calculator
+3. `src/plugins/index.ts` — `registerPlugin(yourPlugin)`
+
+The calculator module is loaded on demand (separate Vite chunk).

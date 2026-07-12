@@ -9,10 +9,12 @@ Tailwind CSS v4 via `@tailwindcss/vite` plugin. Base styles in `src/index.css` (
 ## Commands
 
 ```bash
-npm run dev       # dev server (Vite)
-npm run build     # tsc -b && vite build
-npm run lint      # oxlint
-npm run preview   # preview production build
+npm run dev        # dev server (Vite)
+npm run build      # tsc -b && vite build
+npm run lint       # oxlint
+npm run preview    # preview production build
+npm test           # vitest run (single pass)
+npm run test:watch # vitest watch mode
 ```
 
 ## Architecture

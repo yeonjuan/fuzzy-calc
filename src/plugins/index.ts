@@ -7,6 +7,8 @@ import jsonPlugin from "./json";
 import arithmeticPlugin from "./arithmetic";
 import cronPlugin from "./cron";
 import unixTimePlugin from "./unix-time";
+import base64Plugin from "./base64";
+import numberBasePlugin from "./number-base";
 
 registerPlugin(hexColorPlugin);
 registerPlugin(rgbPlugin);
@@ -16,3 +18,5 @@ registerPlugin(jsonPlugin);
 registerPlugin(arithmeticPlugin);
 registerPlugin(cronPlugin);
 registerPlugin(unixTimePlugin);
+registerPlugin(base64Plugin);
+registerPlugin(numberBasePlugin);

@@ -28,11 +28,13 @@ Single-input web calculator. User types → engine detects matching plugins → 
 ### Core (`src/core/`)
 
 **`types.ts`** — shared interfaces:
+
 - `Plugin` — `{ id, name, detect(input): boolean, calculate(input): Promise<ResultItem[]> }`
 - `ResultItem` — `{ label, value, type: "text"|"code"|"color", language? }`
 - `PluginResult` — `{ pluginId, pluginName, items: ResultItem[] }`
 
 **`engine.ts`** — plugin registry + orchestration:
+
 - `registerPlugin(plugin)` — adds to module-level array
 - `calculate(input)` — runs `detect()` on all plugins (sync, fast), then `Promise.allSettled` on matched ones (async, dynamic imports)
 
@@ -46,6 +48,7 @@ Each plugin lives in its own directory with two files:
 Register plugins in **`src/plugins/index.ts`**. This file is imported once in `App.tsx` as a side-effect.
 
 **Current plugins:**
+
 - `hex-color` — detects `#RGB` / `#RRGGBB` / `#RRGGBBAA`, outputs HEX / RGB / HSL / CSS
 - `jwt` — detects 3-part base64url token, outputs decoded header / payload / expiration
 

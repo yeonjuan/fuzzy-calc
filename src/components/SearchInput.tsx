@@ -25,7 +25,7 @@ export function SearchInput({ value, onChange }: Props) {
       spellCheck={false}
       autoComplete="off"
       rows={1}
-      className="w-full px-4 py-3 text-sm rounded-xl border border-zinc-700 bg-zinc-900 text-zinc-100 placeholder-zinc-600 outline-none focus:border-zinc-500 transition-colors resize-none overflow-y-auto max-h-64 font-mono"
+      className="w-full px-4 py-3 text-sm rounded-xl border border-zinc-300 bg-white text-zinc-800 placeholder-zinc-400 outline-none focus:border-zinc-500 transition-colors resize-none overflow-y-auto max-h-64 font-mono dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-600 dark:focus:border-zinc-500"
     />
   );
 }

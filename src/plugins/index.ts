@@ -5,6 +5,7 @@ import rgbPlugin from "./rgb";
 import hslPlugin from "./hsl";
 import jsonPlugin from "./json";
 import arithmeticPlugin from "./arithmetic";
+import cronPlugin from "./cron";
 
 registerPlugin(hexColorPlugin);
 registerPlugin(rgbPlugin);
@@ -12,3 +13,4 @@ registerPlugin(hslPlugin);
 registerPlugin(jwtPlugin);
 registerPlugin(jsonPlugin);
 registerPlugin(arithmeticPlugin);
+registerPlugin(cronPlugin);

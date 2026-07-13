@@ -1,7 +1,7 @@
 export interface ResultItem {
   label: string;
   value: string;
-  type: "text" | "code" | "color";
+  type: "text" | "code" | "color" | "svg";
   language?: string;
 }
 

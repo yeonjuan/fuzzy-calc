@@ -1,4 +1,5 @@
 import { registerPlugin } from "../core/engine";
+import svgPlugin from "./svg";
 import hexColorPlugin from "./hex-color";
 import jwtPlugin from "./jwt";
 import rgbPlugin from "./rgb";
@@ -10,6 +11,7 @@ import unixTimePlugin from "./unix-time";
 import base64Plugin from "./base64";
 import numberBasePlugin from "./number-base";
 
+registerPlugin(svgPlugin);
 registerPlugin(hexColorPlugin);
 registerPlugin(rgbPlugin);
 registerPlugin(hslPlugin);

@@ -6,6 +6,58 @@ interface Props {
   item: ResultItem;
 }
 
+function TextValue({ value }: { value: string }) {
+  return <div className="text-sm text-zinc-700 break-all dark:text-zinc-200">{value}</div>;
+}
+
+function CodeValue({ value }: { value: string }) {
+  return (
+    <pre className="text-sm text-emerald-700 font-mono whitespace-pre-wrap break-all m-0 dark:text-green-400">
+      <code>{value}</code>
+    </pre>
+  );
+}
+
+function ColorValue({ value }: { value: string }) {
+  return (
+    <div className="flex items-center gap-3">
+      <div
+        className="w-7 h-7 rounded shrink-0 border border-zinc-300 dark:border-zinc-700"
+        style={{ background: value }}
+      />
+      <span className="text-sm text-zinc-700 break-all dark:text-zinc-200">{value}</span>
+    </div>
+  );
+}
+
+function SvgValue({ value }: { value: string }) {
+  return (
+    <div
+      className="rounded overflow-hidden w-50 h-50"
+      style={{
+        backgroundImage:
+          "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        backgroundSize: "16px 16px",
+        backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
+        backgroundColor: "#fff",
+      }}
+    >
+      <img
+        src={`data:image/svg+xml;charset=utf-8,${encodeURIComponent(value)}`}
+        alt="SVG Preview"
+        className="w-full h-full object-contain"
+      />
+    </div>
+  );
+}
+
+const valueRenderers: Record<ResultItem["type"], (value: string) => React.ReactNode> = {
+  text: (value) => <TextValue value={value} />,
+  code: (value) => <CodeValue value={value} />,
+  color: (value) => <ColorValue value={value} />,
+  svg: (value) => <SvgValue value={value} />,
+};
+
 export function ResultCard({ item }: Props) {
   const [copied, setCopied] = useState(false);
 
@@ -24,21 +76,7 @@ export function ResultCard({ item }: Props) {
         {item.label}
       </div>
 
-      {item.type === "color" ? (
-        <div className="flex items-center gap-3">
-          <div
-            className="w-7 h-7 rounded shrink-0 border border-zinc-300 dark:border-zinc-700"
-            style={{ background: item.value }}
-          />
-          <span className="text-sm text-zinc-700 break-all dark:text-zinc-200">{item.value}</span>
-        </div>
-      ) : item.type === "code" ? (
-        <pre className="text-sm text-emerald-700 font-mono whitespace-pre-wrap break-all m-0 dark:text-green-400">
-          <code>{item.value}</code>
-        </pre>
-      ) : (
-        <div className="text-sm text-zinc-700 break-all dark:text-zinc-200">{item.value}</div>
-      )}
+      {valueRenderers[item.type](item.value)}
 
       <button
         onClick={handleCopy}

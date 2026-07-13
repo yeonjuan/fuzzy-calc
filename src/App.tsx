@@ -95,15 +95,24 @@ export default function App() {
       </header>
       <SearchInput value={input} onChange={setInput} />
       <ResultList results={results} loading={isPending && input.trim().length > 0} />
-      <footer className="mt-auto pt-8 text-center text-xs text-zinc-400 dark:text-zinc-600">
-        Want more features?{" "}
+      <footer className="mt-auto pt-8 text-center text-xs text-zinc-400 dark:text-zinc-600 flex items-center justify-center gap-4">
+        <span>
+          Want more features?{" "}
+          <a
+            href={`${REPO_URL}/issues`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors"
+          >
+            Leave an issue on GitHub
+          </a>
+        </span>
+        <span aria-hidden="true">·</span>
         <a
-          href={`${REPO_URL}/issues`}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/fuzzy-calc/privacy.html"
           className="underline underline-offset-2 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors"
         >
-          Leave an issue on GitHub
+          Privacy Policy
         </a>
       </footer>
     </div>

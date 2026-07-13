@@ -40,12 +40,12 @@ export function compute(input: string): ResultItem[] {
     {
       label: "RGB",
       value: a !== null ? `rgba(${r}, ${g}, ${b}, ${a})` : `rgb(${r}, ${g}, ${b})`,
-      type: "text",
+      type: "color",
     },
     {
       label: "HSL",
       value: a !== null ? `hsla(${h}, ${s}%, ${l}%, ${a})` : `hsl(${h}, ${s}%, ${l}%)`,
-      type: "text",
+      type: "color",
     },
   ];
 }

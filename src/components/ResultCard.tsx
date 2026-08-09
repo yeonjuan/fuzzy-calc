@@ -35,12 +35,14 @@ interface Props {
 }
 
 function TextValue({ value }: { value: string }) {
-  return <div className="text-sm text-zinc-700 break-all dark:text-zinc-200">{value}</div>;
+  return (
+    <div className="text-sm text-zinc-700 break-all line-clamp-2 dark:text-zinc-200">{value}</div>
+  );
 }
 
 function CodeValue({ value }: { value: string }) {
   return (
-    <pre className="text-sm text-emerald-700 font-mono whitespace-pre-wrap break-all m-0 dark:text-green-400">
+    <pre className="text-sm text-emerald-700 font-mono whitespace-pre-wrap break-all line-clamp-2 m-0 dark:text-green-400">
       <code>{value}</code>
     </pre>
   );

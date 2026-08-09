@@ -11,6 +11,7 @@ import cronPlugin from "./cron";
 import unixTimePlugin from "./unix-time";
 import base64Plugin from "./base64";
 import numberBasePlugin from "./number-base";
+import urlEncodePlugin from "./url-encode";
 
 registerPlugin(svgPlugin);
 registerPlugin(hexColorPlugin);
@@ -23,5 +24,6 @@ registerPlugin(cronPlugin);
 registerPlugin(unixTimePlugin);
 registerPlugin(base64Plugin);
 registerPlugin(numberBasePlugin);
+registerPlugin(urlEncodePlugin);
 
 registerFilePlugin(videoToGifPlugin);

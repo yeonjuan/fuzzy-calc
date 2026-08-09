@@ -1,4 +1,5 @@
-import { registerPlugin } from "../core/engine";
+import { registerPlugin, registerFilePlugin } from "../core/engine";
+import videoToGifPlugin from "./video-to-gif";
 import svgPlugin from "./svg";
 import hexColorPlugin from "./hex-color";
 import jwtPlugin from "./jwt";
@@ -22,3 +23,5 @@ registerPlugin(cronPlugin);
 registerPlugin(unixTimePlugin);
 registerPlugin(base64Plugin);
 registerPlugin(numberBasePlugin);
+
+registerFilePlugin(videoToGifPlugin);

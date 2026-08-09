@@ -1,6 +1,34 @@
 import { useState } from "react";
 import { Copy, Check } from "lucide-react";
-import type { ResultItem } from "../core/types";
+import type { ResultItem, ResultItemAction } from "../core/types";
+
+function ActionButtons({ actions }: { actions: ResultItemAction[] }) {
+  const [loadingIdx, setLoadingIdx] = useState<number | null>(null);
+
+  async function handleClick(action: ResultItemAction, idx: number) {
+    setLoadingIdx(idx);
+    try {
+      await action.onClick();
+    } finally {
+      setLoadingIdx(null);
+    }
+  }
+
+  return (
+    <div className="flex gap-2 mt-3">
+      {actions.map((action, idx) => (
+        <button
+          key={idx}
+          onClick={() => handleClick(action, idx)}
+          disabled={loadingIdx !== null}
+          className="text-xs px-3 py-1.5 rounded-lg border border-zinc-300 text-zinc-600 hover:border-zinc-500 hover:text-zinc-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed dark:border-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-500 dark:hover:text-zinc-200"
+        >
+          {loadingIdx === idx ? "Converting…" : action.label}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 interface Props {
   item: ResultItem;
@@ -77,6 +105,7 @@ export function ResultCard({ item }: Props) {
       </div>
 
       {valueRenderers[item.type](item.value)}
+      {item.actions && item.actions.length > 0 && <ActionButtons actions={item.actions} />}
 
       <button
         onClick={handleCopy}

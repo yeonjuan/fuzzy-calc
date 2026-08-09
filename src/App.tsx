@@ -2,7 +2,7 @@ import { useState, useEffect, useTransition } from "react";
 import { Sun, Moon, Share2, Check } from "lucide-react";
 import { SearchInput } from "./components/SearchInput";
 import { ResultList } from "./components/ResultList";
-import { calculate } from "./core/engine";
+import { calculate, calculateFile } from "./core/engine";
 import { useTheme } from "./hooks/useTheme";
 import type { PluginResult } from "./core/types";
 import "./plugins";
@@ -20,6 +20,7 @@ export default function App() {
   const { theme, toggle } = useTheme();
   const [input, setInput] = useState(getInitialInput);
   const [results, setResults] = useState<PluginResult[]>([]);
+  const [fileResults, setFileResults] = useState<PluginResult[]>([]);
   const [isPending, startTransition] = useTransition();
   const [shared, setShared] = useState(false);
 
@@ -42,6 +43,10 @@ export default function App() {
       calculate(input).then(setResults);
     });
   }, [input]);
+
+  function handleFileChange(file: File) {
+    calculateFile(file).then(setFileResults);
+  }
 
   function handleShare() {
     navigator.clipboard.writeText(window.location.href).then(() => {
@@ -93,8 +98,11 @@ export default function App() {
           </button>
         </div>
       </header>
-      <SearchInput value={input} onChange={setInput} />
-      <ResultList results={results} loading={isPending && input.trim().length > 0} />
+      <SearchInput value={input} onChange={setInput} onFileChange={handleFileChange} />
+      <ResultList
+        results={[...fileResults, ...results]}
+        loading={isPending && input.trim().length > 0}
+      />
       <footer className="mt-auto pt-8 text-center text-xs text-zinc-400 dark:text-zinc-600 flex items-center justify-center gap-4">
         <span>
           Want more features?{" "}

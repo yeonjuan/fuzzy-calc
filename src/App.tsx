@@ -62,10 +62,20 @@ export default function App() {
       <header className="mb-2 flex items-start justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
-            fuzzy-calc
+            fuzzy calc
           </h1>
           <p className="text-sm text-zinc-400 mt-1 dark:text-zinc-500">
             paste anything. get everything.
+          </p>
+          <p className="text-sm text-zinc-400 mt-1 dark:text-zinc-600">
+            Converts colors, decodes tokens, and more — all locally in your browser. No data is sent
+            to any server.{" "}
+            <a
+              href="/fuzzy-calc/features.html"
+              className="underline underline-offset-2 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors"
+            >
+              more
+            </a>
           </p>
         </div>
         <div className="flex items-center gap-1">

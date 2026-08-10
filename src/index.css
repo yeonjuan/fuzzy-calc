@@ -3,6 +3,11 @@
 
 @layer base {
   body {
-    @apply bg-zinc-100 text-zinc-700 antialiased dark:bg-zinc-950 dark:text-zinc-300;
+    @apply text-zinc-700 antialiased dark:text-zinc-300;
+    background: radial-gradient(ellipse 90% 40% at 50% -5%, #dde8f8 0%, #f4f4f5 60%);
+  }
+
+  :where(.dark) body {
+    background: radial-gradient(ellipse 90% 40% at 50% -5%, #1a2238 0%, #09090b 60%);
   }
 }

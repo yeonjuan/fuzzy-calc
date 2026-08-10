@@ -114,7 +114,7 @@ export default function Features() {
       <header className="flex items-center justify-between">
         <a
           href={BASE}
-          className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 hover:opacity-80 transition-opacity"
+          className="text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity text-indigo-500 dark:text-indigo-400"
         >
           fuzzy calc
         </a>

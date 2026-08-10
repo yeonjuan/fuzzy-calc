@@ -62,7 +62,7 @@ export default function App() {
       <header className="mb-2 flex items-start justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
-            fuzzy calc
+            <span className="text-indigo-500 dark:text-indigo-400">fuzzy calc</span>
           </h1>
           <p className="text-sm text-zinc-400 mt-1 dark:text-zinc-500">
             paste anything. get everything.

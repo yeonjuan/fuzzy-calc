@@ -101,7 +101,7 @@ export function ResultCard({ item }: Props) {
   const Icon = copied ? Check : Copy;
 
   return (
-    <div className="relative bg-white border border-zinc-200 rounded-lg p-4 hover:border-zinc-400 transition-colors group dark:bg-zinc-900 dark:border-zinc-800 dark:hover:border-zinc-600">
+    <div className="relative bg-white border border-zinc-200 rounded-lg p-4 shadow-sm hover:border-zinc-300 hover:shadow-md transition-all group dark:bg-zinc-900 dark:border-zinc-800 dark:hover:border-zinc-600">
       <div className="text-xs uppercase tracking-widest text-zinc-400 mb-2 dark:text-zinc-500">
         {item.label}
       </div>

@@ -35,7 +35,7 @@ export function SearchInput({ value, onChange, onFileChange }: Props) {
         spellCheck={false}
         autoComplete="off"
         rows={1}
-        className="w-full px-4 py-3 pr-11 text-sm rounded-xl border border-zinc-300 bg-white text-zinc-800 placeholder-zinc-400 outline-none focus:border-zinc-500 transition-colors resize-none overflow-y-hidden max-h-64 font-mono dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-600 dark:focus:border-zinc-500"
+        className="w-full px-4 py-3 pr-11 text-sm rounded-xl border border-zinc-300 bg-white text-zinc-800 placeholder-zinc-400 outline-none focus:border-indigo-400 focus:ring-3 focus:ring-indigo-200/50 shadow-sm transition-all resize-none overflow-y-hidden max-h-64 font-mono dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-600 dark:focus:border-indigo-500 dark:focus:ring-indigo-900/50"
       />
       <button
         type="button"

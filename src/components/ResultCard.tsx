@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import { Copy, Check } from "lucide-react";
 import type { ResultItem, ResultItemAction } from "../core/types";
 
@@ -34,17 +34,64 @@ interface Props {
   item: ResultItem;
 }
 
-function TextValue({ value }: { value: string }) {
+function ExpandButton({ expanded, onClick }: { expanded: boolean; onClick: () => void }) {
   return (
-    <div className="text-sm text-zinc-700 break-all line-clamp-2 dark:text-zinc-200">{value}</div>
+    <button
+      onClick={onClick}
+      className="mt-1.5 text-xs text-indigo-500 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors cursor-pointer"
+    >
+      {expanded ? "collapse" : "show all"}
+    </button>
+  );
+}
+
+function TextValue({ value }: { value: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const [clamped, setClamped] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (el && !expanded) setClamped(el.scrollHeight > el.clientHeight);
+  }, [value, expanded]);
+
+  return (
+    <>
+      <div
+        ref={ref}
+        className={`text-sm text-zinc-700 break-all dark:text-zinc-200 ${expanded ? "" : "line-clamp-2"}`}
+      >
+        {value}
+      </div>
+      {(clamped || expanded) && (
+        <ExpandButton expanded={expanded} onClick={() => setExpanded(!expanded)} />
+      )}
+    </>
   );
 }
 
 function CodeValue({ value }: { value: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const [clamped, setClamped] = useState(false);
+  const ref = useRef<HTMLPreElement>(null);
+
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (el && !expanded) setClamped(el.scrollHeight > el.clientHeight);
+  }, [value, expanded]);
+
   return (
-    <pre className="text-sm text-emerald-700 font-mono whitespace-pre-wrap break-all line-clamp-2 m-0 dark:text-green-400">
-      <code>{value}</code>
-    </pre>
+    <>
+      <pre
+        ref={ref}
+        className={`text-sm text-emerald-700 font-mono whitespace-pre-wrap break-all m-0 dark:text-green-400 ${expanded ? "" : "line-clamp-2"}`}
+      >
+        <code>{value}</code>
+      </pre>
+      {(clamped || expanded) && (
+        <ExpandButton expanded={expanded} onClick={() => setExpanded(!expanded)} />
+      )}
+    </>
   );
 }
 

@@ -4,12 +4,12 @@ import { SearchInput } from "./components/SearchInput";
 import { ResultList } from "./components/ResultList";
 import { calculate, calculateFile } from "./core/engine";
 import { useTheme } from "./hooks/useTheme";
+import { useDebounce } from "./hooks/useDebounce";
 import type { PluginResult } from "./core/types";
 import "./plugins";
 import "./App.css";
 
 const REPO_URL = "https://github.com/yeonjuan/fuzzy-calc";
-const SHARE_MAX_LENGTH = 500;
 
 function getInitialInput(): string {
   const params = new URLSearchParams(window.location.search);
@@ -19,6 +19,7 @@ function getInitialInput(): string {
 export default function App() {
   const { theme, toggle } = useTheme();
   const [input, setInput] = useState(getInitialInput);
+  const debouncedInput = useDebounce(input, 300);
   const [results, setResults] = useState<PluginResult[]>([]);
   const [fileResults, setFileResults] = useState<PluginResult[]>([]);
   const [isPending, startTransition] = useTransition();
@@ -26,23 +27,23 @@ export default function App() {
 
   useEffect(() => {
     const url = new URL(window.location.href);
-    if (input) {
-      url.searchParams.set("q", input);
+    if (debouncedInput) {
+      url.searchParams.set("q", debouncedInput);
     } else {
       url.searchParams.delete("q");
     }
     window.history.replaceState(null, "", url);
-  }, [input]);
+  }, [debouncedInput]);
 
   useEffect(() => {
-    if (!input.trim()) {
+    if (!debouncedInput.trim()) {
       setResults([]);
       return;
     }
     startTransition(() => {
-      calculate(input).then(setResults);
+      calculate(debouncedInput).then(setResults);
     });
-  }, [input]);
+  }, [debouncedInput]);
 
   function handleFileChange(file: File) {
     calculateFile(file).then(setFileResults);
@@ -54,8 +55,6 @@ export default function App() {
       setTimeout(() => setShared(false), 1500);
     });
   }
-
-  const canShare = input.length > 0 && input.length <= SHARE_MAX_LENGTH;
 
   return (
     <div className="min-h-screen max-w-3xl mx-auto px-5 py-10 flex flex-col gap-6">
@@ -79,15 +78,13 @@ export default function App() {
           </p>
         </div>
         <div className="flex items-center gap-1">
-          {canShare && (
-            <button
-              onClick={handleShare}
-              title="Copy shareable link"
-              className="p-2 rounded-lg text-zinc-400 hover:text-zinc-700 hover:bg-zinc-200 transition-colors cursor-pointer dark:text-zinc-500 dark:hover:text-zinc-200 dark:hover:bg-zinc-800"
-            >
-              {shared ? <Check size={18} className="text-green-500" /> : <Share2 size={18} />}
-            </button>
-          )}
+          <button
+            onClick={handleShare}
+            title="Copy shareable link"
+            className="p-2 rounded-lg text-zinc-400 hover:text-zinc-700 hover:bg-zinc-200 transition-colors cursor-pointer dark:text-zinc-500 dark:hover:text-zinc-200 dark:hover:bg-zinc-800"
+          >
+            {shared ? <Check size={18} className="text-green-500" /> : <Share2 size={18} />}
+          </button>
           <a
             href={REPO_URL}
             target="_blank"
@@ -111,7 +108,7 @@ export default function App() {
       <SearchInput value={input} onChange={setInput} onFileChange={handleFileChange} />
       <ResultList
         results={[...fileResults, ...results]}
-        loading={isPending && input.trim().length > 0}
+        loading={input.trim().length > 0 && (input !== debouncedInput || isPending)}
       />
       <footer className="mt-auto pt-8 text-center text-xs text-zinc-400 dark:text-zinc-600 flex items-center justify-center gap-4">
         <span>

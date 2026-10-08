@@ -12,6 +12,7 @@ import unixTimePlugin from "./unix-time";
 import base64Plugin from "./base64";
 import numberBasePlugin from "./number-base";
 import urlEncodePlugin from "./url-encode";
+import qrCodePlugin from "./qr-code";
 
 registerPlugin(svgPlugin);
 registerPlugin(hexColorPlugin);
@@ -25,5 +26,6 @@ registerPlugin(unixTimePlugin);
 registerPlugin(base64Plugin);
 registerPlugin(numberBasePlugin);
 registerPlugin(urlEncodePlugin);
+registerPlugin(qrCodePlugin);
 
 registerFilePlugin(videoToGifPlugin);

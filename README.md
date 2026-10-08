@@ -28,6 +28,7 @@ Type a hex color, a JWT, a cron expression, a Unix timestamp — fuzzy-calc figu
 | Decode Base64 string                         | `aGVsbG8gd29ybGQ=`, `dHlwZXNjcmlwdA==`                                    | Decoded text, Base64 encoded       |
 | Convert between number bases                 | `255`, `0xff`, `0b11111111`, `0o377`                                      | DEC, HEX, BIN, OCT                 |
 | URL-encode or decode text                    | `hello world`, `https://example.com/path?q=1&a=2`, `hello%20world`        | URL Encoded, URL Decoded           |
+| Generate QR code from URL or app scheme link | `https://example.com`, `myapp://open?id=42`                               | QR Code (SVG)                      |
 
 <!-- PLUGINS:END -->
 
